@@ -43,27 +43,36 @@
   @media (max-width:860px){ .nav-links{display:none;} }
 
   /* HERO */
-  .hero{position:relative; min-height:100vh; display:flex; align-items:flex-end; color:var(--cream); padding-top:80px;}
+  .hero{position:relative; min-height:100vh; display:flex; flex-direction:column; color:var(--cream); padding-top:80px;}
   .hero-bg{position:absolute; inset:0; z-index:0;}
   .hero-bg img{width:100%; height:100%; object-fit:cover;}
-  .hero-bg::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(26,29,26,0.45) 0%, rgba(26,29,26,0.15) 40%, rgba(26,29,26,0.8) 100%);}
-  .hero-content{position:relative; z-index:1; width:100%; padding:0 0 70px;}
-  .hero-coord{font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.1em; color:var(--cream); opacity:0.85; margin-bottom:22px; display:flex; align-items:center; gap:10px;}
-  .hero-coord::before{content:''; width:26px; height:1px; background:var(--terra);}
-  h1{font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:clamp(44px,7.5vw,92px); line-height:0.98; letter-spacing:-0.02em; margin-bottom:24px; max-width:880px;}
+  .hero-bg::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(26,29,26,0.5) 0%, rgba(26,29,26,0.2) 40%, rgba(26,29,26,0.88) 100%);}
+  .hero-content{position:relative; z-index:1; width:100%; flex:1; display:flex; align-items:center; padding:50px 0 40px;}
+  .hero-eyebrow{font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--cream); opacity:0.85; margin-bottom:22px; display:flex; align-items:center; gap:10px;}
+  .hero-eyebrow::before{content:''; width:26px; height:1px; background:var(--terra);}
+  h1{font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:clamp(40px,7.5vw,92px); line-height:1.02; letter-spacing:-0.02em; margin-bottom:24px; max-width:880px;}
   h1 span{color:var(--terra);}
   .hero p.lead{font-size:18px; line-height:1.6; max-width:500px; color:rgba(244,241,234,0.88); margin-bottom:36px;}
   .hero-actions{display:flex; gap:14px; flex-wrap:wrap; align-items:center;}
-  .btn-primary{background:var(--terra); color:#fff; padding:16px 30px; border-radius:3px; font-size:14px; font-weight:600; letter-spacing:0.02em; display:inline-flex; align-items:center; gap:10px; transition:transform .25s, background .25s;}
+  .btn-primary{background:var(--terra); color:#fff; padding:16px 30px; border-radius:3px; font-size:14px; font-weight:600; letter-spacing:0.02em; display:inline-flex; align-items:center; gap:10px; transition:transform .25s, background .25s; white-space:nowrap;}
   .btn-primary:hover{background:#d27c45; transform:translateY(-2px);}
-  .btn-ghost{border:1px solid rgba(244,241,234,0.4); color:var(--cream); padding:16px 26px; border-radius:3px; font-size:14px; letter-spacing:0.02em; transition:border-color .25s, background .25s;}
+  .btn-ghost{border:1px solid rgba(244,241,234,0.4); color:var(--cream); padding:16px 26px; border-radius:3px; font-size:14px; letter-spacing:0.02em; transition:border-color .25s, background .25s; white-space:nowrap;}
   .btn-ghost:hover{border-color:var(--cream); background:rgba(244,241,234,0.08);}
   .hero-rating{display:flex; align-items:center; gap:8px; font-size:14px; color:rgba(244,241,234,0.9);}
   .hero-rating b{color:#fff;}
 
-  .hero-facts{position:absolute; bottom:0; left:0; right:0; z-index:1; border-top:1px solid rgba(244,241,234,0.16); padding:18px 0;}
-  .hero-facts-inner{display:flex; gap:42px; max-width:1180px; margin:0 auto; padding:0 32px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:13px; color:rgba(244,241,234,0.6);}
+  .hero-facts{position:relative; z-index:1; border-top:1px solid rgba(244,241,234,0.16); padding:18px 0;}
+  .hero-facts-inner{display:flex; gap:36px; max-width:1180px; margin:0 auto; padding:0 32px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:12.5px; color:rgba(244,241,234,0.65);}
   .hero-facts-inner b{color:var(--cream); font-weight:500;}
+
+  @media (max-width:600px){
+    .hero{padding-top:70px;}
+    .hero-content{padding:30px 0 30px;}
+    .hero-actions{gap:12px;}
+    .hero-actions .btn-primary, .hero-actions .btn-ghost{padding:14px 22px; font-size:13.5px;}
+    .hero-rating{width:100%; padding-top:4px;}
+    .hero-facts-inner{gap:18px 28px; font-size:11.5px;}
+  }
 
   /* SECTION */
   section{padding:120px 0;}
@@ -78,14 +87,22 @@
   /* INTRO + amenities */
   .intro{background:var(--cream);}
   .intro-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:64px; align-items:center;}
-  .intro-img{border-radius:4px; overflow:hidden;}
-  .intro-img img{aspect-ratio:4/3; object-fit:cover; width:100%;}
+  .intro-mosaic{display:grid; grid-template-columns:1.3fr 1fr; grid-template-rows:170px 170px; gap:12px;}
+  .intro-mosaic .m-big{grid-row:span 2; border-radius:4px; overflow:hidden;}
+  .intro-mosaic .m-small{border-radius:4px; overflow:hidden;}
+  .intro-mosaic img{width:100%; height:100%; object-fit:cover; display:block;}
   .amenity-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden; margin-top:30px;}
   .amenity{background:var(--cream); padding:20px 22px;}
   .amenity .ic{font-size:20px; margin-bottom:8px;}
   .amenity h4{font-size:15px; font-weight:600; margin-bottom:2px;}
   .amenity p{font-size:13px; color:var(--mute);}
-  @media (max-width:900px){ .intro-grid{grid-template-columns:1fr; gap:40px;} }
+  @media (max-width:900px){
+    .intro-grid{grid-template-columns:1fr; gap:36px;}
+    .intro-mosaic{grid-template-rows:140px 140px;}
+  }
+  @media (max-width:520px){
+    .intro-mosaic{grid-template-columns:1fr 1fr; grid-template-rows:130px 130px;}
+  }
 
   /* GALLERY */
   .gallery{background:var(--forest); color:var(--cream);}
@@ -250,13 +267,15 @@
 <section class="hero">
   <div class="hero-bg"><img src="images/exterior-sun.jpg" alt="Hacienda Dedinky — exteriér domu"></div>
   <div class="wrap hero-content">
-    <div class="hero-coord">48.8684° N, 20.3812° E · Dedinky, Slovenský raj</div>
-    <h1>Celý dom na brehu <span>Slovenského raja.</span></h1>
-    <p class="lead">Moderný apartmán pre 7 hostí priamo pri vodnej nádrži Palcmanská Maša. Dve spálne, plne vybavená kuchyňa, kľud a príroda za dverami.</p>
-    <div class="hero-actions">
-      <a href="#rezervacia" class="btn-primary">Rezervovať pobyt →</a>
-      <a href="#galeria" class="btn-ghost">Prehliadka domu</a>
-      <div class="hero-rating">★ <b>5,0</b> · Superhost · 8 recenzií</div>
+    <div>
+      <div class="hero-eyebrow">Dedinky · Slovenský raj</div>
+      <h1>Celý dom na brehu <span>Slovenského raja.</span></h1>
+      <p class="lead">Moderný apartmán pre 7 hostí priamo pri vodnej nádrži Palcmanská Maša. Dve spálne, plne vybavená kuchyňa, kľud a príroda za dverami.</p>
+      <div class="hero-actions">
+        <a href="#rezervacia" class="btn-primary">Rezervovať pobyt →</a>
+        <a href="#galeria" class="btn-ghost">Prehliadka domu</a>
+        <div class="hero-rating">★ <b>5,0</b> · Superhost · 8 recenzií</div>
+      </div>
     </div>
   </div>
   <div class="hero-facts">
@@ -272,7 +291,11 @@
 
 <section class="intro" id="dom">
   <div class="wrap intro-grid">
-    <div class="intro-img reveal"><img src="images/interior-living.jpg" alt="Obývacia časť apartmánu"></div>
+    <div class="intro-mosaic reveal">
+      <div class="m-big"><img src="images/interior-kitchen.jpg" alt="Kuchyňa a jedáleň"></div>
+      <div class="m-small"><img src="images/interior-tv.jpg" alt="Oddychová zóna s TV"></div>
+      <div class="m-small"><img src="images/bedroom1.jpg" alt="Spálňa s manželskou posteľou"></div>
+    </div>
     <div class="reveal">
       <div class="section-eyebrow">O ubytovaní</div>
       <h2>Priestor, kde sa <span>nadýchnete.</span></h2>
@@ -516,7 +539,7 @@
         </div>
         <div class="loc-row">
           <div class="loc-icon">⭐</div>
-          <div><h4>Hodnotenie</h4><p>5/5 na Airbnb · Superhost · Guest favourite</p></div>
+          <div><h4>Hodnotenie</h4><p>5,0 / 5 na Airbnb · Superhost · Guest favourite</p></div>
         </div>
       </div>
       <div class="map-frame">
@@ -545,7 +568,7 @@
     </div>
     <div class="foot-bottom">
       <span>© 2026 Hacienda Dedinky</span>
-      <span>48.8684° N, 20.3812° E</span>
+      <span>Dedinky · Slovenský raj</span>
     </div>
   </div>
 </footer>
